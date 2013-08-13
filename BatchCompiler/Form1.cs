@@ -31,19 +31,28 @@ namespace BatchCompiler
             config[0] = studiomdlexe;
             config[1] = qcfolder;
             config[2] = gamefolder;
-            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config")) ;
+            
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config"));
             {
                 StringBuilder sb = new StringBuilder();
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + "config"))
+                try
                 {
-
-                    String line;
-                    // Read and display lines from the file until the end of 
-                    // the file is reached.
-                    while ((line = sr.ReadLine()) != null)
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + "config"))
                     {
-                        sb.AppendLine(line);
+
+                        String line;
+                        // Read and display lines from the file until the end of 
+                        // the file is reached.
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            sb.AppendLine(line);
+                        }
                     }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show("ERROR " + exc.Message);
+                    Close();
                 }
                 string config1 = sb.ToString();
                 if (config1 != "")
