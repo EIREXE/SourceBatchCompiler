@@ -169,7 +169,7 @@ namespace BatchCompiler
                 fileindex = filePaths.Length;
                 while (fileindex >= 1)
                 {
-                    MessageBox.Show("starting");
+                    MessageBox.Show("Compiling... console will be empty, because I have to redirect the output, but trust me, it's compiling.");
                     fileindex = fileindex - 1;
                     Console.WriteLine(fileindex);
                     // Start the child process.
