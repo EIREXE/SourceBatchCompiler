@@ -16,7 +16,7 @@ namespace BatchCompiler
         string qcfolder;
         string gamefolder;
         string hlmvfolder;
-        string[] config = new string[] {"", "", "", "","#", "" } ;
+        string[] config = new string[] { "", "", "", "", "#", "" };
         public Form1()
         {
             InitializeComponent();
@@ -36,8 +36,8 @@ namespace BatchCompiler
             config[0] = studiomdlexe;
             config[1] = qcfolder;
             config[2] = gamefolder;
-            
-            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config"));
+
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config")) ;
             {
                 StringBuilder sb = new StringBuilder();
                 try
@@ -84,7 +84,7 @@ namespace BatchCompiler
                 }
             }
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -104,7 +104,7 @@ namespace BatchCompiler
                 config[1] = qcfolder;
                 label5.ForeColor = Color.Green;
                 label5.Text = "OK";
-                
+
                 if (gamefolder != "" & qcfolder != "" & studiomdlexe != "")
                 {
                     string configtowrite = String.Join("#", config);
@@ -173,49 +173,49 @@ namespace BatchCompiler
                 MessageBox.Show("Idiot cull, you didn't select all paths");
                 return;
             }
-                string[] filePaths = System.IO.Directory.GetFiles(qcfolder, "*.qc");
-                int fileindex;
-                string output;
-                fileindex = filePaths.Length;
-                int numberofiles = filePaths.Length - 1;
-                int errors = -1;
-                List<string> log = new List<string>();
+            string[] filePaths = System.IO.Directory.GetFiles(qcfolder, "*.qc");
+            int fileindex;
+            string output;
+            fileindex = filePaths.Length;
+            int numberofiles = filePaths.Length - 1;
+            int errors = -1;
+            List<string> log = new List<string>();
 
-                    while (fileindex >= 1)
-                    {
-                        MessageBox.Show("Compiling... console will be empty, because I have to redirect the output, but trust me, it's compiling.");
-                        fileindex = fileindex - 1;
-                        Console.WriteLine(fileindex);
-                        // Start the child process.
-                        Process p = new Process();
-                        // Redirect the output stream of the child process.
-                        p.StartInfo.UseShellExecute = false;
-                        p.StartInfo.RedirectStandardOutput = true;
-                        p.StartInfo.FileName = studiomdlexe;
-                        p.StartInfo.Arguments = "-game " + (char)34 + gamefolder + (char)34 + (char)34 + filePaths[fileindex] + (char)34;
-                        p.Start();
-                        output = p.StandardOutput.ReadToEnd();
-                        // Do not wait for the child process to exit before
-                        // reading to the end of its redirected stream.
-                        // p.WaitForExit();
-                        // Read the output stream first and then wait.
-                        p.WaitForExit();
-                        if (output.Contains("ERROR"))
-                        {
-                            errors = errors + 1;
-                            log.Add(output);
-                        }
-                    }
-                    if (errors > -1)
-                    {
-                        System.IO.File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "log.txt", log.ToArray());
-                        MessageBox.Show("There where " + (errors + 1) + " " + "errors, check log for more details");
-                    }
-                    else
-                    {
-                        MessageBox.Show("oh you lucky bastard, no errors.");
-                    }
-           }
+            while (fileindex >= 1)
+            {
+                MessageBox.Show("Compiling... console will be empty, because I have to redirect the output, but trust me, it's compiling.");
+                fileindex = fileindex - 1;
+                Console.WriteLine(fileindex);
+                // Start the child process.
+                Process p = new Process();
+                // Redirect the output stream of the child process.
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.FileName = studiomdlexe;
+                p.StartInfo.Arguments = "-game " + (char)34 + gamefolder + (char)34 + (char)34 + filePaths[fileindex] + (char)34;
+                p.Start();
+                output = p.StandardOutput.ReadToEnd();
+                // Do not wait for the child process to exit before
+                // reading to the end of its redirected stream.
+                // p.WaitForExit();
+                // Read the output stream first and then wait.
+                p.WaitForExit();
+                if (output.Contains("ERROR"))
+                {
+                    errors = errors + 1;
+                    log.Add(output);
+                }
+            }
+            if (errors > -1)
+            {
+                System.IO.File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "log.txt", log.ToArray());
+                MessageBox.Show("There where " + (errors + 1) + " " + "errors, check log for more details");
+            }
+            else
+            {
+                MessageBox.Show("oh you lucky bastard, no errors.");
+            }
+        }
 
         private void Browsehlmv_Click(object sender, EventArgs e)
         {
@@ -243,13 +243,21 @@ namespace BatchCompiler
 
         private void hlmv_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(config[3]);
-            Process p = new Process();
-            // Redirect the output stream of the child process.
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.FileName = hlmvfolder;
-            p.StartInfo.Arguments = "-game " + (char)34 + gamefolder + (char)34;
-            p.Start();
-        }
+            try
+            {
+                Console.WriteLine(config[3]);
+                Process p = new Process();
+                // Redirect the output stream of the child process.
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.FileName = hlmvfolder;
+                p.StartInfo.Arguments = "-game " + (char)34 + gamefolder + (char)34;
+                p.Start();
+            }
+            catch(Exception exc)
+            {
+                
+                MessageBox.Show("ERROR: " + exc.Message);
+            }
         }
     }
+}
