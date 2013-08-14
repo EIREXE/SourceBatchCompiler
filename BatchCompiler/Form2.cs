@@ -15,5 +15,15 @@ namespace BatchCompiler
         {
             InitializeComponent();
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

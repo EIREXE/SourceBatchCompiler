@@ -39,6 +39,11 @@
             this.StudioMdlOkay = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.Browsehlmv = new System.Windows.Forms.Button();
+            this.hlmv = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -147,11 +152,53 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "NOT OK";
             // 
+            // Browsehlmv
+            // 
+            this.Browsehlmv.Location = new System.Drawing.Point(6, 19);
+            this.Browsehlmv.Name = "Browsehlmv";
+            this.Browsehlmv.Size = new System.Drawing.Size(75, 23);
+            this.Browsehlmv.TabIndex = 0;
+            this.Browsehlmv.Text = "Browse";
+            this.Browsehlmv.UseVisualStyleBackColor = true;
+            this.Browsehlmv.Click += new System.EventHandler(this.Browsehlmv_Click);
+            // 
+            // hlmv
+            // 
+            this.hlmv.Location = new System.Drawing.Point(6, 48);
+            this.hlmv.Name = "hlmv";
+            this.hlmv.Size = new System.Drawing.Size(75, 23);
+            this.hlmv.TabIndex = 1;
+            this.hlmv.Text = "Launch";
+            this.hlmv.UseVisualStyleBackColor = true;
+            this.hlmv.Click += new System.EventHandler(this.hlmv_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(140, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Stuff to make your life easier";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.hlmv);
+            this.groupBox1.Controls.Add(this.Browsehlmv);
+            this.groupBox1.Location = new System.Drawing.Point(15, 69);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(89, 81);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "HLMV";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 60);
+            this.ClientSize = new System.Drawing.Size(703, 162);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.StudioMdlOkay);
@@ -168,6 +215,7 @@
             this.Name = "Form1";
             this.Text = "EIREXE\'s source batch model compiler";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,6 +234,10 @@
         private System.Windows.Forms.Label StudioMdlOkay;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button Browsehlmv;
+        private System.Windows.Forms.Button hlmv;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
 
     }
 }
